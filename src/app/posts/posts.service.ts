@@ -5,13 +5,16 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 
 import { Post } from './post.model';
+import { AuthService } from '../auth/auth.service';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   private posts: Post[] = [];
   private postsUpdated = new Subject<Post[]>();
+  public userId: string;
+  public postId: string;
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private authService: AuthService) {}
 
   getPosts() {
     this.http
@@ -83,5 +86,17 @@ export class PostsService {
         this.posts = updatedPosts;
         this.postsUpdated.next([...this.posts]);
       });
+  }
+
+  joinToPost(postId: string) {
+    this.userId = this.authService.getUserId();
+
+    console.log('user id of post Service ' + this.userId);
+    this.http
+    .put('http://localhost:3000/api/posts/joinPost/' + this.userId , postId)
+    .subscribe(() => {
+      console.log('added');
+    });
+
   }
 }

@@ -15,3 +15,13 @@ ul {
 .spacer {
   flex: 1 1 auto;
 }
+
+span {
+  font-family: "Montserrat","Avenir";
+}
+.mat-header-color {
+  background-color:#696969;
+}
+.logout{
+  color:white;
+}

@@ -29,6 +29,14 @@
       <mat-error *ngIf="passwordInput.invalid">Please enter a valid Password.</mat-error>
     </mat-form-field>
 
+    <mat-form-field>
+      <mat-select name="userType" ngModel placeholder="User Type">
+        <mat-option value="admin">Admin</mat-option>
+        <mat-option value="student">Student</mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
     <button
       mat-raised-button
       color="accent"

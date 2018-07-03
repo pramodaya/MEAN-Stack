@@ -12,7 +12,8 @@ router.post('/signup',(req,res,next) => {
     .then(hash => {
       const user = new User({
         email: req.body.email,
-        password: hash
+        password: hash,
+        userType: req.body.userType
       });
 
     //save user in the db
@@ -60,7 +61,10 @@ router.post('/login',(req,res,next) => {
      {expiresIn: '1h'}
     );
     res.status(200).json({
-      token: token
+      token: token,
+      userPost: fetchedUser.userPost,
+      userType: fetchedUser.userType,
+      userId: fetchedUser._id
     });
   })
   .catch(err => {

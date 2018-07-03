@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { AuthService } from '../auth.service';
 
+
 @Component({
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
@@ -9,6 +10,8 @@ import { AuthService } from '../auth.service';
 export class SignupComponent {
 
   isLoading = false;
+  type = '';
+
 
   constructor(public authService: AuthService) {}
 
@@ -16,7 +19,8 @@ export class SignupComponent {
     if (form.invalid) {
       return;
     }
-    this.authService.createUser(form.value.email, form.value.password);
+    this.authService.createUser(form.value.email, form.value.password, form.value.userType);
+
   }
 }
 

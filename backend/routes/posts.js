@@ -20,6 +20,17 @@ router.post("", checkAuth, (req, res, next) => {
   });
 });
 
+// join post of user
+router.put("/joinPost/:postId1/:userId", checkAuth, (req, res, next) => {
+
+  //   User.updateOne({ _id: req.params.userId }, {$push: {userPost : req.params.postId}}).then(result => {
+  //   res.status(200).json({ message: "Added to user post" });
+  //  });
+  console.log('postId  ' + req.params.postId1);
+  console.log('User id  ' + req.params.userId);
+});
+
+//finished join user
 router.put("/:id", checkAuth, (req, res, next) => {
   const post = new Post({
     _id: req.body.id,

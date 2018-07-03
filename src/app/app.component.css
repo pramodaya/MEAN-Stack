@@ -1,4 +1,14 @@
 main {
-  width: 80%;
-  margin: 1rem auto;
+  width: 60%;
+  padding-left: 60px;
+  padding-top: 60px;
+  margin: 1rem left;
+}
+
+
+.container {
+  width: 60%;
+  padding-left: 60px;
+  padding-top: 60px;
+  margin: 1rem left;
 }

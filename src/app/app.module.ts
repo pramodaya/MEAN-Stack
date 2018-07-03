@@ -2,6 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule, FormsModule  } from '@angular/forms';
+import { MatSelectModule } from '@angular/material/select';
 
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {
@@ -21,6 +22,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
+import { SubjectsComponent } from './subjects/subjects.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,8 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     HeaderComponent,
     PostListComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    SubjectsComponent
   ],
   imports: [
     BrowserModule,
@@ -38,6 +41,7 @@ import { AuthInterceptor } from './auth/auth-interceptor';
     BrowserAnimationsModule,
     MatInputModule,
     MatCardModule,
+    MatSelectModule,
     MatButtonModule,
     MatToolbarModule,
     MatExpansionModule,

@@ -1,3 +1,4 @@
+// we get the token to here. this is runs for outgoing requests.
 import { HttpInterceptor, HttpRequest, HttpHandler} from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { AuthService } from './auth.service';
@@ -5,13 +6,17 @@ import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
+
   constructor(private authService: AuthService) {}
+
   intercept(req: HttpRequest<any>, next: HttpHandler) {
     const authToken = this.authService.getToken();
+    // if didnt clone it, we might get unwanted problems, therefore it's better to clone it
     const authRequest = req.clone({
       headers: req.headers.set('Authorization', 'Bearer ' + authToken)
     });
 
+    // allow request to continue
     return next.handle(authRequest);
   }
 }

@@ -1,3 +1,20 @@
-<p>
-  subjects works!
-</p>
+<mat-spinner *ngIf="isLoading"></mat-spinner>
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
+  <mat-expansion-panel *ngFor="let post of posts?.reverse()">
+    <mat-expansion-panel-header>
+      {{ post.title }}
+    </mat-expansion-panel-header>
+    <p>Subject Code: {{ post.subCode }}</p>
+    <p>Subject Name: {{ post.subName }}</p>
+    <p>Details: {{ post.content }}</p>
+
+
+
+    <mat-action-row *ngIf="userIsAuthanticated ">
+      <button mat-button color="accent">WITHDRAW</button>
+    </mat-action-row>
+
+
+  </mat-expansion-panel>
+</mat-accordion>
+<p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>

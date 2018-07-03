@@ -1,16 +1,26 @@
+<div>
+  <h1> RECENT ACTIVITIES </h1>
+</div>
+
 <mat-spinner *ngIf="isLoading"></mat-spinner>
-<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading">
-  <mat-expansion-panel *ngFor="let post of posts">
+<mat-accordion multi="true" *ngIf="posts.length > 0 && !isLoading" >
+  <mat-expansion-panel *ngFor="let post of posts?.reverse()" openAll>
     <mat-expansion-panel-header>
-      {{ post.title }}
+      <h3>{{ post.title }}</h3>
     </mat-expansion-panel-header>
-    <p>Subject Code: {{ post.subCode }}</p>
-    <p>Subject Name: {{ post.subName }}</p>
-    <p>Details: {{ post.content }}</p>
-    <mat-action-row>
+    <p><b>Subject Code </b> {{ post.subCode }}</p>
+    <p><b>Subject Name </b> {{ post.subName }}</p>
+    <p><b>Details </b><br>{{ post.content }}</p>
+    <mat-action-row *ngIf="userIsAuthanticated && !currentUserStudent">
       <a mat-button color="primary" [routerLink]="['/edit', post.id]">EDIT</a>
       <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
     </mat-action-row>
+
+    <mat-action-row *ngIf="userIsAuthanticated && currentUserStudent ">
+      <button mat-button color="primary" (click)="onJoin(post.id)">Join</button>
+    </mat-action-row>
+
   </mat-expansion-panel>
 </mat-accordion>
+
 <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
